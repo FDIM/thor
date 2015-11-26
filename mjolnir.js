@@ -1,5 +1,4 @@
 'use strict';
-var proxy = require('socket.io-proxy');
 
 var Socket = require('ws')
   , connections = {}
@@ -41,7 +40,7 @@ process.on('message', function message(task) {
   // End of the line, we are gonna start generating new connections.
   if (!task.url) return;
 
-  var socket = proxy.connect(task.url, {
+  var socket = new Socket(task.url, {
     protocolVersion: protocol
   });
 
